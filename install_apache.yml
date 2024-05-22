@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update yum cache
+    ansible.builtin.yum:
+      update_cache: yes
+
+  - name: Install the apache2 package
+    ansible.builtin.yum:
+      name: httpd.x86_64
+      state: latest
+
+  - name: Add php support for apache
+    ansible.builtin.yum:
+      name: mod_ssl.x86_64
+      state: latest
